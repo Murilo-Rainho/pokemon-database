@@ -1,5 +1,7 @@
 import 'reflect-metadata';
 
+import '../database/connection'
+
 import express, { Express, NextFunction, Request, Response } from 'express';
 
 import bodyParser from 'body-parser';
