@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx tsc && node ./dist/server/serve.js",
     "dev": "nodemon --transpile-only ./src/server/server.ts",
-    "typeorm": "ts-node-dev node_modules/.bin/typeorm"
+    "typeorm": "ts-node ./node_modules/typeorm/cli"
   },
   "repository": {
     "type": "git",
