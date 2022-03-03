@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 
-import { Type } from '../../database/entities/Types';
+import { Type } from '../../database/entities';
 
 class GetAllTypesModel {
   static async execute(): Promise<Type[]> {

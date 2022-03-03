@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { Type } from '../../database/entities/Types';
+import { Type } from '../../database/entities';
 
 import { TypeRequest } from '../../interfaces/types';
 

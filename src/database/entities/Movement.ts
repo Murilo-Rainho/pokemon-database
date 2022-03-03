@@ -7,10 +7,10 @@ import {
 } from 'typeorm';
 
 import { v4 as uuid } from 'uuid';
-import { Type } from './Types';
+import Type from './Type';
 
 @Entity('movements')
-export class Movement {
+class Movement {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -34,3 +34,5 @@ export class Movement {
     if (!this.id) this.id = uuid();
   }
 }
+
+export default Movement;

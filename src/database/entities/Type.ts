@@ -7,7 +7,7 @@ import {
 import { v4 as uuid } from 'uuid';
 
 @Entity('types')
-export class Type {
+class Type {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -21,3 +21,5 @@ export class Type {
     if (!this.id) this.id = uuid();
   }
 }
+
+export default Type;
