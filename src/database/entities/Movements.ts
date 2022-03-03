@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 
 import { v4 as uuid } from 'uuid';
+import { Type } from './Types';
 
 @Entity('movements')
 export class Movement {
@@ -25,9 +26,9 @@ export class Movement {
   @Column()
   type_id: string;
 
-  @ManyToOne(() => Movement)
+  @ManyToOne(() => Type)
   @JoinColumn({ name: 'type_id' })
-  movements: string;
+  type: Type;
 
   constructor() {
     if (!this.id) this.id = uuid();
