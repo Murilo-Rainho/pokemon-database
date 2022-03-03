@@ -1,10 +1,14 @@
 import 'reflect-metadata';
-
 import '../database/connection';
 
 import express, { Express, NextFunction, Request, Response } from 'express';
-
 import bodyParser from 'body-parser';
+
+import {
+  typeRouter,
+  movementRouter,
+  pokemonRouter,
+} from '../routers';
 
 const app: Express = express();
 
@@ -17,5 +21,9 @@ app.get('/ping', (
 ): Response<string> => {
   return res.status(200).send('pong');
 });
+
+app.use('/type', typeRouter);
+app.use('/movement', movementRouter);
+app.use('/pokemon', pokemonRouter);
 
 export default app;
