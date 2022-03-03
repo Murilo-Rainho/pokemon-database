@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import '../database/connection'
+import '../database/connection';
 
 import express, { Express, NextFunction, Request, Response } from 'express';
 
