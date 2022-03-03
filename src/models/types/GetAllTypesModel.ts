@@ -6,9 +6,9 @@ class GetAllTypesModel {
   static async execute(): Promise<Type[]> {
     const repo = getRepository(Type);
 
-    const type = await repo.find();
+    const allTypes = await repo.find();
 
-    return type;
+    return allTypes;
   };
 }
 

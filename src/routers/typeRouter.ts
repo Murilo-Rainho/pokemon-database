@@ -1,10 +1,16 @@
 import { Router } from "express";
 
-import { GetAllTypesController } from '../controllers/types';
+import {
+  CreateOneTypeController,
+  GetAllTypesController,
+} from '../controllers/types';
 
 const router = Router();
 
 // get all poketypes
 router.get('/', GetAllTypesController.handle);
+
+// create one poketype
+router.post('/', CreateOneTypeController.handle);
 
 export default router;
