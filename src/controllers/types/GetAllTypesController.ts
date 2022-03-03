@@ -10,9 +10,9 @@ class GetAllTypesController {
     next: NextFunction,
   ): Promise<Response<Type[]> | void> {
     try {
-      const allTypes = await GetAllTypesService.execute();
+      const result = await GetAllTypesService.execute();
 
-      return res.status(200).json(allTypes);
+      return res.status(200).json(result);
     } catch (error) {
       next(error);
     }

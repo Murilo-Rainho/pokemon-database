@@ -4,21 +4,22 @@ import { Type } from '../../database/entities/Types';
 
 import { TypeRequest } from '../../interfaces/types';
 
-import { CreateOneTypeService } from '../../services/types';
+import { EditOneTypeService } from '../../services/types';
 
-class CreateOneTypeController {
+class EditOneTypeController {
   static async handle(
     req: Request,
     res: Response,
     next: NextFunction,
   ): Promise<Response<Type> | void> {
     try {
+      const { id: typeId } = req.params;
       const typeData = req.body as TypeRequest;
 
-      const result = await CreateOneTypeService.execute(typeData);
+      const result = await EditOneTypeService.execute(typeId, typeData);
 
       if (result instanceof Error) {
-        return res.status(409).json({ message: result.message })
+        return res.status(404).json({ message: result.message })
       }
 
       return res.status(201).json(result);
@@ -28,4 +29,4 @@ class CreateOneTypeController {
   }
 }
 
-export default CreateOneTypeController;
+export default EditOneTypeController;

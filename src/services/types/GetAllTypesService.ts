@@ -2,9 +2,9 @@ import { GetAllTypesModel } from "../../models/types";
 
 class GetAllTypesService {
   static async execute() {
-    const allTypes = await GetAllTypesModel.execute();
+    const result = await GetAllTypesModel.execute();
 
-    return allTypes;
+    return result;
   }
 }
 

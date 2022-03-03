@@ -5,7 +5,7 @@ import { TypeRequest } from '../../interfaces/types';
 
 class CreateOneTypeModel {
   static async execute(
-    { type, hexColor }: TypeRequest
+    { type, hexColor }: TypeRequest,
   ): Promise<Type | Error> {
     const repo = getRepository(Type);
 
