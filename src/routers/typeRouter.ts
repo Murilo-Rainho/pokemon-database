@@ -4,6 +4,7 @@ import {
   CreateOneTypeController,
   GetAllTypesController,
   EditOneTypeController,
+  DeleteOneTypeController,
 } from '../controllers/types';
 
 const router = Router();
@@ -16,5 +17,8 @@ router.post('/', CreateOneTypeController.handle);
 
 // edit one poketype
 router.put('/:id', EditOneTypeController.handle);
+
+// delete one poketype
+router.delete('/:id', DeleteOneTypeController.handle);
 
 export default router;
