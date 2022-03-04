@@ -6,27 +6,31 @@ import {
   JoinTable,
 } from 'typeorm';
 
-import { v4 as uuid } from 'uuid';
-import Pokemon from './Pokemon';
+import Type from './Type';
 
-@Entity('types')
-class Type {
+import { v4 as uuid } from 'uuid';
+
+@Entity('pokemons')
+class Pokemon {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  type: string;
+  name: string;
 
   @Column()
-  hex_color: string;
+  weight: number;
 
-  @ManyToMany(() => Pokemon)
+  @Column()
+  height: number;
+
+  @ManyToMany(() => Type)
   @JoinTable()
-  pokemons: Pokemon[];
+  types: Type[];
 
   constructor() {
     if (!this.id) this.id = uuid();
   }
 }
 
-export default Type;
+export default Pokemon;
