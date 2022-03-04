@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Type } from '../../database/entities';
 
 import { TypeRequest } from '../../interfaces/types';
+import { ErrorObject } from '../../interfaces/utils';
 
 import { CreateOneTypeService } from '../../services/types';
 
@@ -14,7 +15,7 @@ class CreateOneTypeController {
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<Response<Type> | void> {
+  ): Promise<Response<Type | ErrorObject> | void> {
     try {
       const typeData = req.body as TypeRequest;
 

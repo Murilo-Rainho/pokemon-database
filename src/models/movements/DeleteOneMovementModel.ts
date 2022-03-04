@@ -6,7 +6,9 @@ import { ErrorCatcher } from '../../utils/classes';
 import { StatusCode } from '../../utils/enums';
 
 class DeleteOneMovementModel {
-  static async execute(id: string): Promise<void | ErrorCatcher> {
+  static async execute(
+    id: string,
+  ): Promise<void | ErrorCatcher> {
     const repo = getRepository(Movement);
 
     const existMovement = await repo.findOne(id);

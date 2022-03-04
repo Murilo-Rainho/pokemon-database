@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { Type } from '../../database/entities';
+import { Movement } from '../../database/entities';
 
 import { StatusCode } from '../../utils/enums';
 
@@ -15,7 +15,7 @@ class CreateOneMovementController {
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<Response<Type> | void> {
+  ): Promise<Response<Movement> | void> {
     try {
       const movementData = req.body as MovementRequest;
 

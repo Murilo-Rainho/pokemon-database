@@ -12,7 +12,7 @@ class DeleteOneMovementController {
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<Response<ErrorObject> | void> {
+  ): Promise<Response<ErrorObject | void> | void> {
     try {
       const { id } = req.params;
 

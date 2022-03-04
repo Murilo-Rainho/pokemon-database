@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { Type } from '../../database/entities';
+import { ErrorObject } from '../../interfaces/utils';
 
 import { DeleteOneTypeService } from '../../services/types';
 
@@ -12,7 +12,7 @@ class DeleteOneTypeController {
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<Response<Type[]> | void> {
+  ): Promise<Response<ErrorObject | void> | void> {
     try {
       const { id } = req.params;
 

@@ -2,20 +2,20 @@ import { NextFunction, Request, Response } from 'express';
 
 import { Movement } from '../../database/entities';
 
+import { ErrorCatcher } from '../../utils/classes';
 import { StatusCode } from '../../utils/enums';
 
+import { ErrorObject } from '../../interfaces/utils';
 import { MovementRequest } from '../../interfaces/movements';
 
 import { EditOneMovementService } from '../../services/movements';
-
-import { ErrorCatcher } from '../../utils/classes';
 
 class EditOneMovementController {
   static async handle(
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<Response<Movement> | void> {
+  ): Promise<Response<Movement | ErrorObject> | void> {
     try {
       const { id } = req.params;
 
