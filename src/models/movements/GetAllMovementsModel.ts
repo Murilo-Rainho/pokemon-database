@@ -3,10 +3,12 @@ import { getRepository } from 'typeorm';
 import { Movement } from '../../database/entities';
 
 class GetAllMovementsModel {
-  static async execute(): Promise<Movement[]> {
+  static async execute(includeType: boolean): Promise<Movement[]> {
     const repo = getRepository(Movement);
 
-    const allMovements = await repo.find();
+    const lazyLoad = (includeType) ? ['type'] : [];
+
+    const allMovements = await repo.find({ relations: lazyLoad });
     return allMovements;
   };
 }

@@ -5,10 +5,18 @@ import {
   GetAllMovementsController,
 } from '../controllers/movements'
 
+import {
+  VerifyIncludeTypeQueryParam,
+} from '../middlewares/movements';
+
 const router = Router();
 
 // get all movements
-router.get('/', GetAllMovementsController.handle);
+router.get(
+  '/',
+  VerifyIncludeTypeQueryParam.handle,
+  GetAllMovementsController.handle,
+);
 
 // create one movement
 router.post('/', CreateOneMovementController.handle);

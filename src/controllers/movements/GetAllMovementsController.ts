@@ -8,12 +8,16 @@ import { GetAllMovementsService } from '../../services/movements';
 
 class GetAllMovementsController {
   static async handle(
-    _req: Request,
+    req: Request,
     res: Response,
     next: NextFunction,
   ): Promise<Response<Movement[]> | void> {
     try {
-      const result = await GetAllMovementsService.execute();
+      const { includeType } = req.query;
+
+      const booleanIncludeType = (includeType === 'true') ? true : false;
+
+      const result = await GetAllMovementsService.execute(booleanIncludeType);
 
       return res.status(StatusCode.Ok).json(result);
     } catch (error) {
