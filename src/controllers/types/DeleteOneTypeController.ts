@@ -4,7 +4,7 @@ import { Type } from '../../database/entities';
 
 import { DeleteOneTypeService } from '../../services/types';
 
-import { StatusCode } from '../../enums';
+import { StatusCode } from '../../utils/enums';
 
 class DeleteOneTypeController {
   static async handle(

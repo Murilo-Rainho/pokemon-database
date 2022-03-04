@@ -2,13 +2,13 @@ import { NextFunction, Request, Response } from 'express';
 
 import { Type } from '../../database/entities';
 
-import { StatusCode } from '../../enums';
+import { StatusCode } from '../../utils/enums';
 
 import { MovementRequest } from '../../interfaces/movements';
 
 import { CreateOneMovementService } from '../../services/movements';
 
-import { ErrorCatcher } from '../../utils';
+import { ErrorCatcher } from '../../utils/classes';
 
 class CreateOneMovementController {
   static async handle(

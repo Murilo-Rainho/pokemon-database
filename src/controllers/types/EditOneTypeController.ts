@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Type } from '../../database/entities';
 
 import { TypeRequest } from '../../interfaces/types';
-import { StatusCode } from '../../enums';
+import { StatusCode } from '../../utils/enums';
 
 import { EditOneTypeService } from '../../services/types';
 

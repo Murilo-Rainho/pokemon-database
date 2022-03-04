@@ -1,11 +1,11 @@
 import { getRepository } from 'typeorm';
 
 import { Movement, Type } from '../../database/entities';
-import { StatusCode } from '../../enums';
+import { StatusCode } from '../../utils/enums';
 
 import { MovementRequest } from '../../interfaces/movements';
 
-import { ErrorCatcher } from '../../utils';
+import { ErrorCatcher } from '../../utils/classes';
 
 class CreateOneTypeModel {
   static async execute(

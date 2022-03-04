@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { Type } from '../../database/entities';
 
-import { StatusCode } from '../../enums';
+import { StatusCode } from '../../utils/enums';
 
 import { GetAllTypesService } from '../../services/types';
 

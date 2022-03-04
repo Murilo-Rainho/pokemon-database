@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { Movement } from '../../database/entities';
 
-import { StatusCode } from '../../enums';
+import { StatusCode } from '../../utils/enums';
 
 import { GetAllMovementsService } from '../../services/movements';
 

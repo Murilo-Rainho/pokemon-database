@@ -1,7 +1,7 @@
 import { CreateOneMovementModel } from "../../models/movements";
 
 import { MovementRequest } from "../../interfaces/movements";
-import { ErrorCatcher } from "../../utils";
+import { ErrorCatcher } from "../../utils/classes";
 
 class CreateOneMovementService {
   static async execute(movementData: MovementRequest) {

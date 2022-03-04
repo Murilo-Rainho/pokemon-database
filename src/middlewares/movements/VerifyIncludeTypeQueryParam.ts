@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { StatusCode } from '../../enums';
+import { StatusCode } from '../../utils/enums';
 
 import { ErrorObject } from '../../interfaces/utils';
 
