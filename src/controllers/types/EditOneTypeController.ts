@@ -3,9 +3,11 @@ import { NextFunction, Request, Response } from 'express';
 import { Type } from '../../database/entities';
 
 import { TypeRequest } from '../../interfaces/types';
-import { StatusCode } from '../../utils/enums';
 
 import { EditOneTypeService } from '../../services/types';
+
+import { StatusCode } from '../../utils/enums';
+import { ErrorCatcher } from '../../utils/classes';
 
 class EditOneTypeController {
   static async handle(
@@ -19,8 +21,8 @@ class EditOneTypeController {
 
       const result = await EditOneTypeService.execute(typeId, typeData);
 
-      if (result instanceof Error) {
-        return res.status(StatusCode.NotFound).json({ message: result.message })
+      if (result instanceof ErrorCatcher) {
+        return res.status(result.httpStatusCode).json({ message: result.message })
       }
 
       return res.status(StatusCode.Created).json(result);

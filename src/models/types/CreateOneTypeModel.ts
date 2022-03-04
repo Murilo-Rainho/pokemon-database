@@ -1,17 +1,21 @@
 import { getRepository } from 'typeorm';
 
 import { Type } from '../../database/entities';
+
 import { TypeRequest } from '../../interfaces/types';
+
+import { ErrorCatcher } from '../../utils/classes';
+import { StatusCode } from '../../utils/enums';
 
 class CreateOneTypeModel {
   static async execute(
     { type, hexColor }: TypeRequest,
-  ): Promise<Type | Error> {
+  ): Promise<Type | ErrorCatcher> {
     const repo = getRepository(Type);
 
     const existType = await repo.findOne({ type });
     if (existType) {
-      return new Error('Type already exists');
+      return new ErrorCatcher('Type already exists', StatusCode.Conflict);
     }
 
     const createdType = repo.create({ type, hex_color: hexColor });

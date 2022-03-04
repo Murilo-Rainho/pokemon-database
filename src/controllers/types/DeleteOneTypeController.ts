@@ -4,6 +4,7 @@ import { Type } from '../../database/entities';
 
 import { DeleteOneTypeService } from '../../services/types';
 
+import { ErrorCatcher } from '../../utils/classes';
 import { StatusCode } from '../../utils/enums';
 
 class DeleteOneTypeController {
@@ -17,8 +18,8 @@ class DeleteOneTypeController {
 
       const result = await DeleteOneTypeService.execute(id);
 
-      if (result instanceof Error) {
-        return res.status(StatusCode.NotFound).json({ message: result.message })
+      if (result instanceof ErrorCatcher) {
+        return res.status(result.httpStatusCode).json({ message: result.message })
       }
 
       return res.status(StatusCode.NoContent).send();

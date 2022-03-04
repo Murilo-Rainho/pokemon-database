@@ -3,9 +3,11 @@ import { NextFunction, Request, Response } from 'express';
 import { Type } from '../../database/entities';
 
 import { TypeRequest } from '../../interfaces/types';
-import { StatusCode } from '../../utils/enums';
 
 import { CreateOneTypeService } from '../../services/types';
+
+import { ErrorCatcher } from '../../utils/classes';
+import { StatusCode } from '../../utils/enums';
 
 class CreateOneTypeController {
   static async handle(
@@ -18,8 +20,8 @@ class CreateOneTypeController {
 
       const result = await CreateOneTypeService.execute(typeData);
 
-      if (result instanceof Error) {
-        return res.status(StatusCode.Conflict).json({ message: result.message })
+      if (result instanceof ErrorCatcher) {
+        return res.status(result.httpStatusCode).json({ message: result.message })
       }
 
       return res.status(StatusCode.Created).json(result);
