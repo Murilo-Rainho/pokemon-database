@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Type } from '../../database/entities';
 
 import { TypeRequest } from '../../interfaces/types';
+import { StatusCode } from '../../enums';
 
 import { EditOneTypeService } from '../../services/types';
 
@@ -19,10 +20,10 @@ class EditOneTypeController {
       const result = await EditOneTypeService.execute(typeId, typeData);
 
       if (result instanceof Error) {
-        return res.status(404).json({ message: result.message })
+        return res.status(StatusCode.NotFound).json({ message: result.message })
       }
 
-      return res.status(201).json(result);
+      return res.status(StatusCode.Created).json(result);
     } catch (error) {
       next(error);
     }

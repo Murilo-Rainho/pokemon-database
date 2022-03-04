@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { Type } from '../../database/entities';
+
 import { DeleteOneTypeService } from '../../services/types';
+
+import { StatusCode } from '../../enums';
 
 class DeleteOneTypeController {
   static async handle(
@@ -15,10 +18,10 @@ class DeleteOneTypeController {
       const result = await DeleteOneTypeService.execute(id);
 
       if (result instanceof Error) {
-        return res.status(404).json({ message: result.message })
+        return res.status(StatusCode.NotFound).json({ message: result.message })
       }
 
-      return res.status(204).send();
+      return res.status(StatusCode.NoContent).send();
     } catch (error) {
       next(error);
     }

@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { Type } from '../../database/entities';
+
+import { StatusCode } from '../../enums';
+
 import { GetAllTypesService } from '../../services/types';
 
 class GetAllTypesController {
@@ -12,7 +15,7 @@ class GetAllTypesController {
     try {
       const result = await GetAllTypesService.execute();
 
-      return res.status(200).json(result);
+      return res.status(StatusCode.Ok).json(result);
     } catch (error) {
       next(error);
     }
