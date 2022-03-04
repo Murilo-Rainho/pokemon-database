@@ -1,0 +1,35 @@
+import { NextFunction, Request, Response } from 'express';
+
+import { Type } from '../../database/entities';
+
+import { StatusCode } from '../../enums';
+
+import { MovementRequest } from '../../interfaces/movements';
+
+import { CreateOneMovementService } from '../../services/movements';
+
+import { ErrorCatcher } from '../../utils';
+
+class CreateOneMovementController {
+  static async handle(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response<Type> | void> {
+    try {
+      const movementData = req.body as MovementRequest;
+
+      const result = await CreateOneMovementService.execute(movementData);
+
+      if (result instanceof ErrorCatcher) {
+        return res.status(result.httpStatusCode).json({ message: result.message })
+      }
+
+      return res.status(StatusCode.Created).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+}
+
+export default CreateOneMovementController;
