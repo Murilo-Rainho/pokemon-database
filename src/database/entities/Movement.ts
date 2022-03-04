@@ -21,7 +21,7 @@ class Movement {
   power: number;
 
   @Column()
-  descriptions: string;
+  description: string;
 
   @Column()
   type_id: string;
