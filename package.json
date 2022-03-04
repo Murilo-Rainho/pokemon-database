@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/server/server.js",
   "scripts": {
-    "start": "npx tsc && node ./dist/server/serve.js",
+    "start": "npx tsc && node ./dist/server/server.js",
     "dev": "nodemon --transpile-only ./src/server/server.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
