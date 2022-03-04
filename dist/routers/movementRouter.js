@@ -8,4 +8,6 @@ const router = (0, express_1.Router)();
 router.get('/', movements_2.VerifyIncludeTypeQueryParam.handle, movements_1.GetAllMovementsController.handle);
 // create one movement
 router.post('/', movements_1.CreateOneMovementController.handle);
+// edit one movement
+router.put('/:id', movements_1.EditOneMovementController.handle);
 exports.default = router;

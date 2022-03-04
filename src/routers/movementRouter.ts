@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import {
   CreateOneMovementController,
+  EditOneMovementController,
   GetAllMovementsController,
 } from '../controllers/movements'
 
@@ -20,5 +21,8 @@ router.get(
 
 // create one movement
 router.post('/', CreateOneMovementController.handle);
+
+// edit one movement
+router.put('/:id', EditOneMovementController.handle);
 
 export default router;
