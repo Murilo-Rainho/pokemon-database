@@ -8,7 +8,7 @@ import {
 } from '../controllers/movements'
 
 import {
-  VerifyIncludeTypeQueryParam,
+  VerifyTypeLazyLoad,
 } from '../middlewares/movements';
 
 const router = Router();
@@ -16,7 +16,7 @@ const router = Router();
 // get all movements
 router.get(
   '/',
-  VerifyIncludeTypeQueryParam.handle,
+  VerifyTypeLazyLoad.handle,
   GetAllMovementsController.handle,
 );
 

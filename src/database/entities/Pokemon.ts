@@ -24,9 +24,9 @@ class Pokemon {
   @Column()
   height: number;
 
-  @ManyToMany(() => Type)
+  @ManyToMany(() => Type, (type) => type.pokemons)
   @JoinTable()
-  types: Type[];
+  types: Promise<Type[]>;
 
   constructor() {
     if (!this.id) this.id = uuid();

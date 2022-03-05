@@ -8,12 +8,16 @@ import { GetAllTypesService } from '../../services/types';
 
 class GetAllTypesController {
   static async handle(
-    _req: Request,
+    req: Request,
     res: Response,
     next: NextFunction,
   ): Promise<Response<Type[]> | void> {
     try {
-      const result = await GetAllTypesService.execute();
+      const { includePokemons } = req.query;
+
+      const booleanIncludePokemons = (includePokemons === 'true') ? true : false;
+
+      const result = await GetAllTypesService.execute(booleanIncludePokemons);
 
       return res.status(StatusCode.Ok).json(result);
     } catch (error) {

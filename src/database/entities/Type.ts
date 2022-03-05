@@ -20,9 +20,9 @@ class Type {
   @Column()
   hex_color: string;
 
-  @ManyToMany(() => Pokemon)
+  @ManyToMany(() => Pokemon, (pokemon) => pokemon.types)
   @JoinTable()
-  pokemons: Pokemon[];
+  pokemons: Promise<Pokemon[]>;
 
   constructor() {
     if (!this.id) this.id = uuid();

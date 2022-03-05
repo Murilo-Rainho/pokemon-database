@@ -7,10 +7,16 @@ import {
   DeleteOneTypeController,
 } from '../controllers/types';
 
+import { VerifyPokemonsLazyLoad } from "../middlewares/types";
+
 const router = Router();
 
 // get all poketypes
-router.get('/', GetAllTypesController.handle);
+router.get(
+  '/',
+  VerifyPokemonsLazyLoad.handle,
+  GetAllTypesController.handle,
+);
 
 // create one poketype
 router.post('/', CreateOneTypeController.handle);

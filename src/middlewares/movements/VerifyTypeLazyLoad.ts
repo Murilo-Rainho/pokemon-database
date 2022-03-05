@@ -4,7 +4,7 @@ import { StatusCode } from '../../utils/enums';
 
 import { ErrorObject } from '../../interfaces/utils';
 
-class VerifyIncludeTypeQueryParam {
+class VerifyTypeLazyLoad {
   static async handle(
     req: Request,
     res: Response,
@@ -32,4 +32,4 @@ class VerifyIncludeTypeQueryParam {
   }
 }
 
-export default VerifyIncludeTypeQueryParam;
+export default VerifyTypeLazyLoad;

@@ -1,1 +1,1 @@
-export { default as VerifyIncludeTypeQueryParam } from '../movements/VerifyIncludeTypeQueryParam';
+export { default as VerifyTypeLazyLoad } from './VerifyTypeLazyLoad';
