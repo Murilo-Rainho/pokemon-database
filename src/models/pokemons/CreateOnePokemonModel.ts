@@ -18,6 +18,8 @@ class CreateOnePokemonModel {
       name, weight, height, types: allTypes,
     });
 
+    await pokemonRepo.save(createdPokemon);
+
     return createdPokemon;
   }
 }

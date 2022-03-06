@@ -8,13 +8,13 @@ export class createPokemonsTypesIntermediary1646430459898 implements MigrationIn
 					name: 'types_pokemons_pokemons',
 					columns: [
 						{
-							name: 'pokemon_id',
+							name: 'pokemonsId',
 							type: 'varchar',
 							isPrimary: true,
 							generationStrategy: 'uuid',
 						},
 						{
-							name: 'type_id',
+							name: 'typesId',
 							type: 'varchar',
 							isPrimary: true,
 							generationStrategy: 'uuid',
@@ -22,12 +22,12 @@ export class createPokemonsTypesIntermediary1646430459898 implements MigrationIn
 					],
 					foreignKeys: [
 						{
-							columnNames: ['pokemon_id'],
+							columnNames: ['pokemonsId'],
 							referencedColumnNames: ['id'],
 							referencedTableName: 'pokemons',
 						},
 						{
-							columnNames: ['type_id'],
+							columnNames: ['typesId'],
 							referencedColumnNames: ['id'],
 							referencedTableName: 'types',
 						},
