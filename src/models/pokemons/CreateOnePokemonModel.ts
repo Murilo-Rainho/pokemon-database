@@ -15,7 +15,7 @@ class CreateOnePokemonModel {
     const typeRepo = getRepository(Type);
     const typePokemonPokemonRepo = getRepository(TypePokemonPokemon);
 
-    const allTypes = await Promise.all(typesId.map(
+    const allTypes = Promise.all(typesId.map(
       (typeId) => typeRepo.findOne(typeId),
     ));
 

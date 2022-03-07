@@ -2,15 +2,35 @@ import { getRepository } from 'typeorm';
 
 import { Pokemon } from '../../database/entities';
 
+import { PokemonResponse } from '../../interfaces/pokemons';
+
 class GetAllPokemonsModel {
   static async execute(
     includeType: boolean,
-  ): Promise<Pokemon[]> {
+  ): Promise<PokemonResponse[]> {
     const repo = getRepository(Pokemon);
 
     const allPokemons = await repo.find();
 
-    return allPokemons;
+    if (!includeType) {
+      return allPokemons;
+    }
+
+    const allTypes = await Promise.all(allPokemons.map((pokemon) => (
+      pokemon.types
+    )));
+
+    const result = allPokemons.map((pokemon, index) => (
+      {
+        id: pokemon.id,
+        name: pokemon.name,
+        weight: pokemon.weight,
+        height: pokemon.height,
+        types: allTypes[index],
+      }
+    ));
+
+    return result;
   };
 }
 
