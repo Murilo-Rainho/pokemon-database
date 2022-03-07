@@ -24,7 +24,7 @@ class Pokemon {
   @Column()
   height: number;
 
-  @ManyToMany(() => Type, (type) => type.pokemons)
+  @ManyToMany(() => Type, (type) => type.pokemons, { eager: true })
   @JoinTable()
   types: Promise<Type[]>;
 
