@@ -1,8 +1,14 @@
 import { Router } from 'express';
 
-import { CreateOnePokemonController } from '../controllers/pokemons';
+import {
+  CreateOnePokemonController,
+  GetAllPokemonsController,
+} from '../controllers/pokemons';
 
 const router = Router();
+
+// get all pokemons
+router.get('/', GetAllPokemonsController.handle);
 
 // create one pokemon
 router.post('/', CreateOnePokemonController.handle);
