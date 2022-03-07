@@ -26,7 +26,7 @@ class Pokemon {
 
   @ManyToMany(() => Type, (type) => type.pokemons, { eager: true })
   @JoinTable()
-  types: Promise<Type[]>;
+  types: Type[];
 
   constructor() {
     if (!this.id) this.id = uuid();

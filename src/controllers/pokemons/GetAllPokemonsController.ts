@@ -13,11 +13,11 @@ class GetAllPokemonsController {
     next: NextFunction,
   ): Promise<Response<Pokemon[]> | void> {
     try {
-      // const { includeTypes } = req.query;
+      const { includeType } = req.query;
 
-      // const booleanIncludeTypes = (includeTypes === 'true') ? true : false;
+      const booleanIncludeType = (includeType === 'true') ? true : false;
 
-      const result = await GetAllPokemonsService.execute();
+      const result = await GetAllPokemonsService.execute(booleanIncludeType);
 
       return res.status(StatusCode.Ok).json(result);
     } catch (error) {

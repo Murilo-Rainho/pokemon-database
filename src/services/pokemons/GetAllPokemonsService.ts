@@ -4,9 +4,9 @@ import { Pokemon } from "../../database/entities";
 
 class GetAllPokemonsService {
   static async execute(
-    // includeTypes: boolean,
+    includeType: boolean,
   ): Promise<Pokemon[]> {
-    const result = await GetAllPokemonsModel.execute();
+    const result = await GetAllPokemonsModel.execute(includeType);
 
     return result;
   }

@@ -22,7 +22,7 @@ class Type {
 
   @ManyToMany(() => Pokemon, (pokemon) => pokemon.types)
   @JoinTable()
-  pokemons: Promise<Pokemon[]>;
+  pokemons: Pokemon[];
 
   constructor() {
     if (!this.id) this.id = uuid();
