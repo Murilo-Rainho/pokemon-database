@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import {
   CreateOnePokemonController,
+  EditOnePokemonController,
   GetAllPokemonsController,
 } from '../controllers/pokemons';
 import { VerifyTypeLazyLoad } from '../middlewares/pokemons';
@@ -17,5 +18,8 @@ router.get(
 
 // create one pokemon
 router.post('/', CreateOnePokemonController.handle);
+
+// edit one pokemon
+router.put('/:id', EditOnePokemonController.handle);
 
 export default router;
