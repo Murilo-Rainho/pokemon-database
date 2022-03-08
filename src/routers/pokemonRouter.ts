@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import {
   CreateOnePokemonController,
+  DeleteOnePokemonController,
   EditOnePokemonController,
   GetAllPokemonsController,
 } from '../controllers/pokemons';
@@ -21,5 +22,8 @@ router.post('/', CreateOnePokemonController.handle);
 
 // edit one pokemon
 router.put('/:id', EditOnePokemonController.handle);
+
+// delete one pokemon
+router.delete('/:id', DeleteOnePokemonController.handle);
 
 export default router;
