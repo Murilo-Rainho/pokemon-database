@@ -1,13 +1,13 @@
 import { CreateOnePokemonModel } from "../../models/pokemons";
 
-import { PokemonRequest } from "../../interfaces/pokemons";
+import { PokemonRequest, PokemonResponse } from "../../interfaces/pokemons";
 
-import { Pokemon } from "../../database/entities";
+import { ErrorCatcher } from "../../utils/classes";
 
 class CreateOnePokemonService {
   static async execute(
     pokemonData: PokemonRequest,
-  ): Promise<Pokemon> {
+  ): Promise<ErrorCatcher | PokemonResponse> {
     const result = await CreateOnePokemonModel.execute(pokemonData);
 
     return result;
