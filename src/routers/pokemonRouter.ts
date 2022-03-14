@@ -1,5 +1,12 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
+import { PokemonResponse } from '../app/interfaces/pokemons';
+import { ErrorObject } from '../app/interfaces/utils';
+import ControllerResponse from '../app/interfaces/utils/ControllerResponse';
+
+import { VerifyTypeLazyLoad } from '../app/middlewares/pokemons';
+import { ErrorCatcher } from '../app/utils/classes';
+
 import {
   CreateOnePokemonController,
   DeleteOnePokemonController,
@@ -7,9 +14,6 @@ import {
   GetAllPokemonsController,
   GetPokemonByIdController,
 } from '../app/controllers/pokemons';
-
-import { VerifyTypeLazyLoad } from '../app/middlewares/pokemons';
-import { ErrorCatcher } from '../app/utils/classes';
 
 const router = Router();
 
@@ -19,14 +23,18 @@ const getAllPokemonsController = new GetAllPokemonsController();
 // get all pokemons
 router.get(
   '/',
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, _res: Response, next: NextFunction): void => {
     const result = verifyTypeLazyLoad.handle(req.query);
 
     if (!result) return next();
 
     return next(result);
   },
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response<ErrorObject | ControllerResponse<PokemonResponse[]>> | void> => {
     const result = await getAllPokemonsController.handle(req.query);
 
     if (result instanceof ErrorCatcher) {
@@ -40,12 +48,12 @@ router.get(
 // get one pokemon
 router.get(
   '/:id',
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, _res: Response, next: NextFunction): void => {
     const result = verifyTypeLazyLoad.handle(req.query);
 
     if (!result) return next();
 
-    return res.status(result.httpStatusCode).json(result.message)
+    return next(result);
   },
   GetPokemonByIdController.handle
 );
