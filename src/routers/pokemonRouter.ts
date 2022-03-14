@@ -5,6 +5,7 @@ import {
   DeleteOnePokemonController,
   EditOnePokemonController,
   GetAllPokemonsController,
+  GetPokemonByIdController,
 } from '../controllers/pokemons';
 import { VerifyTypeLazyLoad } from '../middlewares/pokemons';
 
@@ -16,6 +17,9 @@ router.get(
   VerifyTypeLazyLoad.handle,
   GetAllPokemonsController.handle,
 );
+
+// get one pokemon
+router.get('/:id', GetPokemonByIdController.handle);
 
 // create one pokemon
 router.post('/', CreateOnePokemonController.handle);
