@@ -1,33 +1,33 @@
-import { NextFunction, Request, Response } from 'express';
-
 import { StatusCode } from '../../utils/enums';
 
 import { ErrorObject } from '../../interfaces/utils';
 
 class VerifyTypeLazyLoad {
-  static async handle(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<Response<ErrorObject> | void> {
+  handle(
+    reqQuery: any
+  ): ErrorObject | void {
     try {
-      const { includeType } = req.query;
+      const { includeType } = reqQuery;
 
-      const errorObject: ErrorObject = {
-        message: 'query \'includeType\' only accepts \'true\' or \'false\'',
-      }
+      const errorMessage = 'query \'includeType\' only accepts \'true\' or \'false\'';
 
       if (includeType === undefined || includeType.length === 0) {
-        return next();
+        return undefined;
       }
 
       if (!includeType.toString().match(/^(true|false)$/i)) {
-        return res.status(StatusCode.BadRequest).json(errorObject);
+        return {
+          httpStatusCode: StatusCode.BadRequest,
+          message: errorMessage,
+        };
       }
 
-      next();
+      return undefined;
     } catch (error) {
-      next(error);
+      return {
+        message: error.message,
+        httpStatusCode: StatusCode.InternalServerError,
+      };
     }
   }
 }

@@ -1,4 +1,5 @@
 interface ErrorObject {
+  httpStatusCode: number;
   message: string;
 }
 

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 
 import {
   CreateOnePokemonController,
@@ -7,21 +7,36 @@ import {
   GetAllPokemonsController,
   GetPokemonByIdController,
 } from '../app/controllers/pokemons';
+
 import { VerifyTypeLazyLoad } from '../app/middlewares/pokemons';
 
 const router = Router();
 
+const verifyTypeLazyLoad = new VerifyTypeLazyLoad();
+
 // get all pokemons
 router.get(
   '/',
-  VerifyTypeLazyLoad.handle,
+  (req: Request, res: Response, next: NextFunction) => {
+    const result = verifyTypeLazyLoad.handle(req.query);
+
+    if (!result) return next();
+
+    return res.status(result.httpStatusCode).json(result.message)
+  },
   GetAllPokemonsController.handle,
 );
 
 // get one pokemon
 router.get(
   '/:id',
-  VerifyTypeLazyLoad.handle,
+  (req: Request, res: Response, next: NextFunction) => {
+    const result = verifyTypeLazyLoad.handle(req.query);
+
+    if (!result) return next();
+
+    return res.status(result.httpStatusCode).json(result.message)
+  },
   GetPokemonByIdController.handle
 );
 
