@@ -9,10 +9,12 @@ import {
 } from '../app/controllers/pokemons';
 
 import { VerifyTypeLazyLoad } from '../app/middlewares/pokemons';
+import { ErrorCatcher } from '../app/utils/classes';
 
 const router = Router();
 
 const verifyTypeLazyLoad = new VerifyTypeLazyLoad();
+const getAllPokemonsController = new GetAllPokemonsController();
 
 // get all pokemons
 router.get(
@@ -22,9 +24,17 @@ router.get(
 
     if (!result) return next();
 
-    return res.status(result.httpStatusCode).json(result.message)
+    return next(result);
   },
-  GetAllPokemonsController.handle,
+  async (req: Request, res: Response, next: NextFunction) => {
+    const result = await getAllPokemonsController.handle(req.query);
+
+    if (result instanceof ErrorCatcher) {
+      return next(result);
+    }
+
+    return res.status(result.httpStatusCode).json(result);
+  },
 );
 
 // get one pokemon

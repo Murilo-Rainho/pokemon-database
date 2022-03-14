@@ -1,27 +1,29 @@
-import { NextFunction, Request, Response } from 'express';
-
-import { Pokemon } from '../../database/entities';
-
 import { StatusCode } from '../../utils/enums';
 
 import { GetAllPokemonsService } from '../../services/pokemons';
 
+import { ErrorObject } from '../../interfaces/utils';
+import ControllerResponse from '../../interfaces/utils/ControllerResponse';
+import { PokemonResponse } from '../../interfaces/pokemons';
+import { ErrorCatcher } from '../../utils/classes';
+
 class GetAllPokemonsController {
-  static async handle(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<Response<Pokemon[]> | void> {
+  async handle(
+    reqQuery: any,
+  ): Promise<ErrorObject | ControllerResponse<PokemonResponse[]>> {
     try {
-      const { includeType } = req.query;
+      const { includeType } = reqQuery;
 
       const booleanIncludeType = (includeType === 'true') ? true : false;
 
       const result = await GetAllPokemonsService.execute(booleanIncludeType);
 
-      return res.status(StatusCode.Ok).json(result);
+      return {
+        httpStatusCode: StatusCode.Ok,
+        result,
+      };
     } catch (error) {
-      next(error);
+      return new ErrorCatcher(error.message, StatusCode.InternalServerError);
     }
   }
 }

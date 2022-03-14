@@ -1,6 +1,7 @@
 import { StatusCode } from '../../utils/enums';
 
 import { ErrorObject } from '../../interfaces/utils';
+import { ErrorCatcher } from '../../utils/classes';
 
 class VerifyTypeLazyLoad {
   handle(
@@ -16,18 +17,12 @@ class VerifyTypeLazyLoad {
       }
 
       if (!includeType.toString().match(/^(true|false)$/i)) {
-        return {
-          httpStatusCode: StatusCode.BadRequest,
-          message: errorMessage,
-        };
+        return new ErrorCatcher(errorMessage, StatusCode.BadRequest);
       }
 
       return undefined;
     } catch (error) {
-      return {
-        message: error.message,
-        httpStatusCode: StatusCode.InternalServerError,
-      };
+      return new ErrorCatcher(error.message, StatusCode.InternalServerError);
     }
   }
 }
