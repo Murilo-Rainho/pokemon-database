@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import '../database/connection';
+import '../app/database/connection';
 
 import express, { Express, NextFunction, Request, Response } from 'express';
 import bodyParser from 'body-parser';
@@ -23,7 +23,9 @@ app.get('/ping', (
 });
 
 app.use('/type', typeRouter);
+
 app.use('/movement', movementRouter);
+
 app.use('/pokemon', pokemonRouter);
 
 export default app;

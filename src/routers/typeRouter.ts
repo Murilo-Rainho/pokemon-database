@@ -6,9 +6,9 @@ import {
   EditOneTypeController,
   DeleteOneTypeController,
   GetTypeByIdController,
-} from '../controllers/types';
+} from '../app/controllers/types';
 
-import { VerifyPokemonsLazyLoad } from "../middlewares/types";
+import { VerifyPokemonsLazyLoad } from "../app/middlewares/types";
 
 const router = Router();
 

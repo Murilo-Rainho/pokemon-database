@@ -5,11 +5,11 @@ import {
   DeleteOneMovementController,
   EditOneMovementController,
   GetAllMovementsController,
-} from '../controllers/movements'
+} from '../app/controllers/movements'
 
 import {
   VerifyTypeLazyLoad,
-} from '../middlewares/movements';
+} from '../app/middlewares/movements';
 
 const router = Router();
 
