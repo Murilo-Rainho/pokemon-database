@@ -24,8 +24,8 @@ class GetAllPokemonsModel {
       {
         id: pokemon.id,
         name: pokemon.name,
-        weight: pokemon.weight,
         height: pokemon.height,
+        weight: pokemon.weight,
         types: allTypes[index],
       }
     ));

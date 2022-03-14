@@ -1,14 +1,15 @@
 import { GetPokemonByIdModel } from "../../models/pokemons";
 
-import { Pokemon } from "../../database/entities";
-
 import { ErrorCatcher } from "../../utils/classes";
+
+import { PokemonResponse } from "../../interfaces/pokemons";
 
 class GetPokemonByIdService {
   static async execute(
     id: string,
-  ): Promise<Pokemon | ErrorCatcher> {
-    const result = await GetPokemonByIdModel.execute(id);
+    includeType: boolean,
+  ): Promise<PokemonResponse | ErrorCatcher> {
+    const result = await GetPokemonByIdModel.execute(id, includeType);
 
     if (result instanceof ErrorCatcher) {
       return result;
