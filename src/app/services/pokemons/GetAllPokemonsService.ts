@@ -1,12 +1,14 @@
 import { GetAllPokemonsModel } from "../../models/pokemons";
 
-import { Pokemon } from "../../database/entities";
+import { PokemonResponse } from "../../interfaces/pokemons";
 
 class GetAllPokemonsService {
-  static async execute(
+  private getAllPokemonsModel = new GetAllPokemonsModel();
+
+  async execute(
     includeType: boolean,
-  ): Promise<Pokemon[]> {
-    const result = await GetAllPokemonsModel.execute(includeType);
+  ): Promise<PokemonResponse[]> {
+    const result = await this.getAllPokemonsModel.execute(includeType);
 
     return result;
   }

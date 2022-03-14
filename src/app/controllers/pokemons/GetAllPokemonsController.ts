@@ -1,22 +1,23 @@
-import { StatusCode } from '../../utils/enums';
-
 import { GetAllPokemonsService } from '../../services/pokemons';
 
-import { ErrorObject } from '../../interfaces/utils';
-import ControllerResponse from '../../interfaces/utils/ControllerResponse';
+import { ErrorObject, ControllerResponse } from '../../interfaces/utils';
 import { PokemonResponse } from '../../interfaces/pokemons';
+
+import { StatusCode } from '../../utils/enums';
 import { ErrorCatcher } from '../../utils/classes';
 
 class GetAllPokemonsController {
+  private getAllPokemonsService = new GetAllPokemonsService();
+
   async handle(
-    reqQuery: any,
+    queriesRequest: any,
   ): Promise<ErrorObject | ControllerResponse<PokemonResponse[]>> {
     try {
-      const { includeType } = reqQuery;
+      const { includeType } = queriesRequest;
 
       const booleanIncludeType = (includeType === 'true') ? true : false;
 
-      const result = await GetAllPokemonsService.execute(booleanIncludeType);
+      const result = await this.getAllPokemonsService.execute(booleanIncludeType);
 
       return {
         httpStatusCode: StatusCode.Ok,
