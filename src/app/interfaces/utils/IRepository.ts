@@ -1,9 +1,9 @@
 interface IRepository<T> {
-  findAll(): T[];
-  findOne(): T;
-  createOne(): T;
-  editOne(): T;
-  deleteOne(): T;
+  findAll(): Promise<T[]>;
+  findOne(): Promise<T>;
+  createOne(): Promise<T>;
+  editOne(): Promise<T>;
+  deleteOne(): Promise<T>;
 }
 
 export default IRepository;
