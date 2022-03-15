@@ -1,7 +1,6 @@
-interface PokemonRequest {
-  name: string;
-  weight: number;
-  height: number;
+import IPokemon from "./IPokemon";
+
+interface PokemonRequest extends IPokemon {
   typesId: string[];
 }
 

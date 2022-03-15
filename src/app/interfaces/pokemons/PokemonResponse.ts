@@ -1,10 +1,8 @@
 import { Type } from "../../database/entities";
+import IPokemon from "./IPokemon";
 
-interface PokemonResponse {
+interface PokemonResponse extends IPokemon {
   id: string;
-  name: string;
-  weight: number;
-  height: number;
   types?: Type[] | Promise<Type[]>;
 }
 

@@ -1,16 +1,16 @@
-import { getRepository } from 'typeorm';
+import Repository from '../../database/repositories';
 
 import { Pokemon } from '../../database/entities';
 
 import { PokemonResponse } from '../../interfaces/pokemons';
 
 class GetAllPokemonsModel {
+  private repo = new Repository('Pokemon');
+
   async execute(
     includeType: boolean,
   ): Promise<PokemonResponse[]> {
-    const repo = getRepository(Pokemon);
-
-    const allPokemons = await repo.find();
+    const allPokemons = await this.repo.find();
 
     if (!includeType) {
       return allPokemons;
